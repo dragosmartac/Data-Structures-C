@@ -41,7 +41,7 @@ hash_node *new_hash_node(void *key, void *value) {
 bool contains(hash_table *table, void *key) {
 
   /*Check the given arguments*/
-  error_check(table, "contains function");
+  error_check(table, "contains function.");
   if(key == NULL) {
     perror("Provided key pointer is null. Error appeared in contains function.");
     exit(EXIT_FAILURE);
@@ -64,7 +64,7 @@ bool contains(hash_table *table, void *key) {
 bool add(hash_table *table, void *key, void *value) {
 
   /*Check the given arguments*/
-  error_check(table, "add function");
+  error_check(table, "add function.");
   if(key == NULL) {
     perror("Provided key pointer is null. Error appeared in add function.");
     exit(EXIT_FAILURE);
@@ -98,7 +98,7 @@ bool add(hash_table *table, void *key, void *value) {
 bool delete(hash_table *table, void *key) {
 
   /*Check the given arguments*/
-  error_check(table, "delete function");
+  error_check(table, "delete function.");
   if(key == NULL) {
     perror("Provided key pointer is null. Error appeared in delete function.");
     exit(EXIT_FAILURE);
@@ -129,7 +129,7 @@ bool delete(hash_table *table, void *key) {
 }
 
 void free_table(hash_table *table) {
-  error_check(table, "free table");
+  error_check(table, "free_table function.");
 
   hash_node *node, *next_node;
 
@@ -176,4 +176,41 @@ hash_table *create_hash_table(hash_funct_ptr hash_function, comparator_funct_ptr
   new_hash_table->no_of_slots = no_of_slots;
 
   return new_hash_table;
+}
+
+void print_table(hash_table *table, print_funct printer) {
+
+  error_check(table, "print_table function.");
+
+  bool has_printed = false;
+  bool non_empty_slot;
+
+  hash_node *node;
+  for(int i = 0; i < table->no_of_slots; ++i) {
+    node = table->slots_list[i];
+    non_empty_slot = false;
+
+    if(node != NULL) {
+      non_empty_slot = true;
+      if(!has_printed) {
+        has_printed = true;
+        printf("Elements of the hash table:\n");
+      }
+      printf("table->slots_list[ %d ]: ", i);
+    }
+
+    while(node != NULL) {
+      printer(node->key, node->value);
+      printf(" ");
+      node = node->next;
+    }
+
+    if(non_empty_slot) {
+      printf("\n");
+    }
+  }
+
+  if(!has_printed) {
+    printf("Hash table is empty.");
+  }
 }

@@ -16,6 +16,14 @@ typedef int (*hash_funct_ptr)(void *);
  */
 typedef int(*comparator_funct_ptr)(void *, void *);
 
+/**
+ * Prints a hash table pair to the standard output. It assumes the hash_table pairs have all the same type.
+ *
+ * @param pointer to the key
+ * @param pointer to the value
+ */
+typedef void(*print_funct)(void *, void *);
+
 typedef struct hash_node{
     void *key;
     void *value;
@@ -38,5 +46,7 @@ bool delete(hash_table *table, void *key);
 void free_table(hash_table *table);
 
 hash_table *create_hash_table(hash_funct_ptr hash_function, comparator_funct_ptr cmp_func, __uint32_t no_of_slots);
+
+void print_table(hash_table *table, print_funct printer);
 
 #endif //HASH_HASH_TABLE_H
