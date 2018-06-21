@@ -128,6 +128,29 @@ bool delete(hash_table *table, void *key) {
   return true;
 }
 
+void *get_value(hash_table *table, void *key) {
+
+  /*Check the given arguments*/
+  error_check(table, "get_value function.");
+  if(key == NULL) {
+    perror("Provided key pointer is null. Error appeared in get_value function.");
+    exit(EXIT_FAILURE);
+  }
+
+  int slot = table->hash_function(key);
+
+  hash_node *curr = table->slots_list[slot];
+
+  while(curr != NULL && table->cmp_func(curr->key, key) <= 0) {
+    if(!table->cmp_func(curr->key, key)) {
+      return curr->value;
+    }
+    curr = curr->next;
+  }
+
+  return NULL;
+}
+
 void free_table(hash_table *table) {
   error_check(table, "free_table function.");
 
@@ -147,6 +170,7 @@ void free_table(hash_table *table) {
 }
 
 hash_table *create_hash_table(hash_funct_ptr hash_function, comparator_funct_ptr cmp_func, __uint32_t no_of_slots) {
+
   /*Check the given arguments*/
   if(hash_function == NULL) {
     perror("Provided hash function pointer is null. Error appeared in create_hash_table.");

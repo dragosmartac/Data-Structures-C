@@ -43,6 +43,8 @@ bool add(hash_table *table, void *key, void *value);
 
 bool delete(hash_table *table, void *key);
 
+void *get_value(hash_table *table, void *key);
+
 void free_table(hash_table *table);
 
 hash_table *create_hash_table(hash_funct_ptr hash_function, comparator_funct_ptr cmp_func, __uint32_t no_of_slots);

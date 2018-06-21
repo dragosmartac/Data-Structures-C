@@ -31,9 +31,15 @@ void small_test1() {
   add(int_hash_table, int_list + 4, str1);
   add(int_hash_table, int_list + 6, str1);
 
+  printf("\nTesting get_value function:\n");
+  printf("The key %d, contains %s\n", int_list[0], (char *)get_value(int_hash_table, int_list));
+  printf("The key %d, contains %s\n", int_list[1], (char *)get_value(int_hash_table, int_list + 1));
+  printf("The key %d, contains %s\n", int_list[4], (char *)get_value(int_hash_table, int_list + 4));
+
   printf("\n");
 
   print_table(int_hash_table, int_string_printer);
+
 
   free_table(int_hash_table);
 
