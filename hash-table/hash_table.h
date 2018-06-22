@@ -1,5 +1,6 @@
 #ifndef HASH_HASH_TABLE_H
 #define HASH_HASH_TABLE_H
+#define STANDARD_NO_OF_SLOTS 93323
 
 #include <stdbool.h>
 
@@ -7,14 +8,14 @@
  * @param key
  * @return an integer representing the slot index for the given key. (returned index < no_of_slots)
  */
-typedef int (*hash_funct_ptr)(void *);
+typedef __uint32_t (*hash_funct_ptr)(void *);
 
 /**
  * @param pointer to first key
  * @param pointer to second key
  * @return negative value if key1 "<" ke2, 0 if key1 "=" key2 and a positive value otherwise
  */
-typedef int(*comparator_funct_ptr)(void *, void *);
+typedef int (*comparator_funct_ptr)(void *, void *);
 
 /**
  * Prints a hash table pair to the standard output. It assumes the hash_table pairs have all the same type.
