@@ -1,10 +1,9 @@
 #include "hash_utility_func.h"
-#include "stdio.h"
 
 
 /* Hash And comparator function for int keys */
-int int_hash_func(void *key) {
-  return *((int *)key) % STANDARD_NO_OF_SLOTS;
+__uint32_t int_hash_func(void *key) {
+  return *((__uint32_t *)key);
 }
 
 int int_cmp_funct(void *key1, void *key2) {

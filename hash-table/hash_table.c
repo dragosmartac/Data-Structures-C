@@ -47,7 +47,7 @@ bool contains(hash_table *table, void *key) {
     exit(EXIT_FAILURE);
   }
 
-  int slot = table->hash_function(key);
+  int slot = table->hash_function(key) % table->no_of_slots;
 
   hash_node *curr = table->slots_list[slot];
 
@@ -70,7 +70,7 @@ bool add(hash_table *table, void *key, void *value) {
     exit(EXIT_FAILURE);
   }
 
-  int slot = table->hash_function(key);
+  int slot = table->hash_function(key) % table->no_of_slots;
 
   hash_node *curr = table->slots_list[slot];
   hash_node *prev = NULL;
@@ -104,7 +104,7 @@ bool delete(hash_table *table, void *key) {
     exit(EXIT_FAILURE);
   }
 
-  int slot = table->hash_function(key);
+  int slot = table->hash_function(key) % table->no_of_slots;
 
   hash_node *curr = table->slots_list[slot];
   hash_node *prev = NULL;
@@ -137,7 +137,7 @@ void *get_value(hash_table *table, void *key) {
     exit(EXIT_FAILURE);
   }
 
-  int slot = table->hash_function(key);
+  int slot = table->hash_function(key) % table->no_of_slots;
 
   hash_node *curr = table->slots_list[slot];
 
