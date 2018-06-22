@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
 #include "hash_table.h"
 #include "hash_utility_func.h"
 
@@ -42,6 +44,42 @@ void small_test1() {
 
 
   free_table(int_hash_table);
+
+}
+
+void gen_random(char *s, const int len) {
+  static const char alphanum[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+
+  for (int i = 0; i < len; ++i) {
+    s[i] = alphanum[rand() % (sizeof(alphanum) - 1)];
+  }
+
+  s[len] = 0;
+}
+
+void stress_test() {
+
+  //Create a hash table for tuples of the form (string, int)
+  hash_table *string_hash_table = create_hash_table(&string_hash_func, &string_cmp_funct, STANDARD_NO_OF_SLOTS);
+
+  const int RUN_TIME = 120; //number of seconds to run the test
+  time_t start_time = time(NULL);
+
+  int dummy_value = 1; //Dummy value to be added to the hash table
+
+  int no_of_strings = 0;
+  int max_no_of_strings = 30000;
+  char **table_of_strings = (char **) malloc(max_no_of_strings * sizeof(char *)); //Matrix to keep all the keys stored in the hash table
+
+  while(difftime(start_time, time(NULL)) < RUN_TIME) {
+
+    //Creates a new random string and add it to the hash table
+    int str_size = rand() % 25; //The size of the string to be generated
+    *(table_of_strings + no_of_strings) = (char *) calloc(str_size, sizeof(char));
+    gen_random(*(table_of_strings + no_of_strings), str_size);
+
+    add(string_hash_table, *(table_of_strings + no_of_strings), &dummy_value);
+  }
 
 }
 
