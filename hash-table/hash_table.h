@@ -119,6 +119,21 @@ void free_table(hash_table *table);
  */
 hash_table *create_hash_table(hash_funct_ptr hash_function, comparator_funct_ptr cmp_func, __uint32_t no_of_slots);
 
+
+/**
+ * @brief Prints the entire content of the provided hash table
+ *
+ * It prints all the tuples contained by the given hash table,
+ * using for each individual tuple the provided print function.
+ * This function takes as argument the tuple to be printed,
+ * as two void * pointers.
+ *
+ * Important: It assumes that all the tuples in the hash table
+ * have the same type.
+ *
+ * @param table The hash table to be printed
+ * @param printer Pointer to a print function
+ */
 void print_table(hash_table *table, print_funct printer);
 
 #endif //HASH_HASH_TABLE_H
