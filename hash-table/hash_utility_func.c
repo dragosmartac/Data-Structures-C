@@ -19,7 +19,7 @@ int int_cmp_funct(void *key1, void *key2) {
 __uint32_t string_hash_func(void *key) {
   char *str = (char *)key;
   __uint32_t hash_value = 0;
-  while (str) {
+  while (*str) {
     hash_value = (hash_value << 5) + hash_value + *str;
     ++str;
   }
