@@ -5,8 +5,11 @@
 #include <stdbool.h>
 
 /**
+ * The hash value returned is then divided by the maximum number
+ * of slots inside internal functions of the hash table.
+ *
  * @param key
- * @return an integer representing the slot index for the given key. (returned index < no_of_slots)
+ * @return an integer representing the hash value for the given key.
  */
 typedef __uint32_t (*hash_funct_ptr)(void *);
 
