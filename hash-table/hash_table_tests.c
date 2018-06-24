@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
+#include <assert.h>
 #include "hash_table.h"
 #include "hash_utility_func.h"
 
@@ -98,6 +99,8 @@ void stress_test() {
 
     add(string_hash_table, *(table_of_strings + no_of_strings), &dummy_value);
 
+    assert(contains(string_hash_table, *(table_of_strings + no_of_strings)));
+
     no_of_strings = (no_of_strings + 1) % max_no_of_strings;
   }
 
@@ -119,7 +122,7 @@ void stress_test() {
 
 int main() {
 
-  //small_test1();
+  small_test1();
   stress_test();
   return 0;
 }
