@@ -85,6 +85,7 @@ bool add(hash_table *table, void *key, void *value) {
 
   hash_node *new_node = new_hash_node(key, value);
   if(prev == NULL) {
+    new_node->next = table->slots_list[slot];
     table->slots_list[slot] = new_node;
   }else {
     prev->next = new_node;
