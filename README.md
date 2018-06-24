@@ -3,11 +3,11 @@
 
 ## Hash table
 
-This repository currently provides a generic hash table implementation using void pointers. The strategy of chaining was used in the case of collision.
+This repository currently provides a generic hash table implementation using void pointers.
 
 ### Modules description
 
-The main module: **hash_table.c** contains the generic functions of the hash table, including the function **create_hash_table**, which given a pointer to a function that computes the hash values for the keys of the hash table, a pointer to a comparator function and the number of slots, it returns a new heap allocated hash table.
+The main module: **hash_table.c** contains the generic functions of the hash table, including the function **create_hash_table**, which given a pointer to a function that computes the hash values for the future keys of the hash table, a pointer to a comparator function that enforce a relative order for chaining elements and the number of slots, it returns a newly heap allocated hash table.
 
 Some of example of hash functions and compartor functions are provided in the module named: **hash_utility_func.c**.
 
