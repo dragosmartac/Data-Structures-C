@@ -3,7 +3,7 @@
 
 ## Hash table
 
-This repository currently provides a generic hash table implementation using void pointers. For collisions the startegy used was chaining.  
+This repository currently provides a generic hash table implementation using void pointers. The strategy of chaining was used in the case of collision.
 
 ### Modules description
 
