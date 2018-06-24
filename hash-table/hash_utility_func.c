@@ -1,4 +1,5 @@
 #include <string.h>
+#include <assert.h>
 #include "hash_utility_func.h"
 
 
@@ -18,6 +19,7 @@ int int_cmp_funct(void *key1, void *key2) {
 /*Hash function and comparator function fot string keys*/
 __uint32_t string_hash_func(void *key) {
   char *str = (char *)key;
+  assert(strlen(str));
   __uint32_t hash_value = 0;
   while (*str) {
     hash_value = (hash_value << 5) + hash_value + *str;

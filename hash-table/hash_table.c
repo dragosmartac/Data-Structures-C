@@ -85,6 +85,7 @@ bool add(hash_table *table, void *key, void *value) {
 
   hash_node *new_node = new_hash_node(key, value);
   if(prev == NULL) {
+    new_node->next = table->slots_list[slot];
     table->slots_list[slot] = new_node;
   }else {
     prev->next = new_node;
@@ -208,7 +209,6 @@ void print_table(hash_table *table, print_funct printer) {
 
   bool has_printed = false;
   bool non_empty_slot;
-
   hash_node *node;
   for(int i = 0; i < table->no_of_slots; ++i) {
     node = table->slots_list[i];
